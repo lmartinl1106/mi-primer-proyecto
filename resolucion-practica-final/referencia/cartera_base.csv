@@ -1,0 +1,35 @@
+moneda,grupo,mesa,posicion_base_usd_mm,comentario
+USD,Principal,Tesoreria,45.0,Posición global neta larga en dólares
+USD,Principal,Comercio Exterior,-12.0,Prefinanciaciones de exportación a cubrir
+USD,Principal,Banca Corporativa,18.0,Depósitos y préstamos en dólares
+EUR,Principal,Tesoreria,6.0,
+EUR,Principal,Comercio Exterior,-4.5,Cartas de crédito de importación
+CNY,Principal,Tesoreria,8.0,Liquidación de comercio con China
+CNY,Principal,Comercio Exterior,5.5,Cobranzas de exportación en yuanes
+CNH,Principal,Tesoreria,-3.0,Cobertura offshore del yuan
+BRL,Principal,Comercio Exterior,4.0,Comercio con Brasil
+BRL,Principal,Banca Corporativa,-1.5,
+CLP,Latam,Comercio Exterior,1.2,
+UYU,Latam,Banca Corporativa,0.8,
+PYG,Latam,Comercio Exterior,0.6,
+BOB,Latam,Comercio Exterior,0.5,
+PEN,Latam,Comercio Exterior,0.7,
+COP,Latam,Comercio Exterior,0.6,
+MXP,Latam,Tesoreria,1.0,
+GBP,G10,Tesoreria,1.5,
+JPY,G10,Tesoreria,-2.0,
+CHF,G10,Tesoreria,1.2,
+CAD,G10,Comercio Exterior,0.9,
+AUD,G10,Comercio Exterior,0.7,
+NZD,G10,Comercio Exterior,0.3,
+SEK,G10,Tesoreria,0.4,
+NOK,G10,Tesoreria,0.4,
+DKK,G10,Tesoreria,0.3,
+HKD,Asia y otros,Tesoreria,1.0,
+SGD,Asia y otros,Tesoreria,0.8,
+INR,Asia y otros,Comercio Exterior,0.9,
+ZAR,Asia y otros,Comercio Exterior,0.4,
+TRY,Asia y otros,Comercio Exterior,0.3,
+XAU,Metales,Inversiones,3.0,Oro físico
+XAG,Metales,Inversiones,0.5,Plata
+XDR,Otros,Tesoreria,1.0,Derechos especiales de giro

@@ -1,0 +1,57 @@
+# Databricks Asset Bundle del TP final: pipeline medallion + Job diario (extracción → pipeline).
+# Despliegue opcional por CLI:   databricks bundle deploy -t dev
+# Ejecución del Job:             databricks bundle run tp_final_fx_diario -t dev
+# El README explica cómo crear lo mismo desde la interfaz.
+
+bundle:
+  name: tp-final-fx-var
+
+variables:
+  catalog:
+    description: Catálogo de Unity Catalog
+    default: workspace
+  schema:
+    description: Esquema de trabajo (contiene el volume landing y las tablas del pipeline)
+    default: martin_lin_tp_fx
+
+resources:
+  pipelines:
+    tp_final_fx:
+      name: pipeline_fx
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      continuous: false
+      channel: CURRENT
+      libraries:
+        - glob:
+            include: ./pipeline/**
+      configuration:
+        tp.landing_path: /Volumes/${var.catalog}/${var.schema}/landing/bcra
+        tp.cartera_path: /Volumes/${var.catalog}/${var.schema}/landing/referencia/cartera_base.csv
+
+  jobs:
+    tp_final_fx_diario:
+      name: tp_final_fx_diario_martin_lin
+      tasks:
+        - task_key: extraccion_bcra
+          notebook_task:
+            notebook_path: ./extraccion/00_extraccion_bcra.py
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              verificar_ssl: "false"
+        - task_key: pipeline_medallion
+          depends_on:
+            - task_key: extraccion_bcra
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.tp_final_fx.id}
+      schedule:                       # días hábiles a las 20 h (después del cierre del BCRA); en pausa
+        quartz_cron_expression: "0 0 20 ? * MON-FRI"
+        timezone_id: America/Argentina/Buenos_Aires
+        pause_status: PAUSED
+
+targets:
+  dev:
+    mode: development
+    default: true
